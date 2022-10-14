@@ -29,14 +29,14 @@ mongoose
   });
 
 //! register
-app.post("/register", async (req, res) => {
+app.post("/register", (req, res) => {
   try {
     bcrypt.hash(req.body.password, saltRounds, async function (err, hash) {
       const newUser = new User({
         email: req.body.email,
         password: hash,
       });
-      await newUser.save();
+     await newUser.save();
       res.status(201).json(newUser);
     });
   } catch (error) {
